@@ -8,3 +8,5 @@ INTEGRANTES
 - Garelli, Mayco         62585
 - Sarmiento, Leandro     62070
 - Roca, Felix            63573
+
+# Las líneas de base se crearan luego de cada parcial.
