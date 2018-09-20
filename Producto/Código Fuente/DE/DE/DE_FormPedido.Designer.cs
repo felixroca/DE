@@ -269,6 +269,7 @@
             this.rb_programarRecepcion.TabStop = true;
             this.rb_programarRecepcion.Text = "Programar recepción";
             this.rb_programarRecepcion.UseVisualStyleBackColor = true;
+            this.rb_programarRecepcion.CheckedChanged += new System.EventHandler(this.rb_programarRecepcion_CheckedChanged);
             // 
             // rb_loAntesPosible
             // 
@@ -281,6 +282,7 @@
             this.rb_loAntesPosible.TabStop = true;
             this.rb_loAntesPosible.Text = "Lo antes posible";
             this.rb_loAntesPosible.UseVisualStyleBackColor = true;
+            this.rb_loAntesPosible.CheckedChanged += new System.EventHandler(this.rb_loAntesPosible_CheckedChanged);
             // 
             // btn_realizarPedido
             // 
@@ -290,6 +292,7 @@
             this.btn_realizarPedido.TabIndex = 18;
             this.btn_realizarPedido.Text = "Realizar Pedido!";
             this.btn_realizarPedido.UseVisualStyleBackColor = true;
+            this.btn_realizarPedido.Click += new System.EventHandler(this.btn_realizarPedido_Click);
             // 
             // groupBox2
             // 
@@ -315,6 +318,7 @@
             this.rb_pagoEfectivo.TabStop = true;
             this.rb_pagoEfectivo.Text = "Efectivo";
             this.rb_pagoEfectivo.UseVisualStyleBackColor = true;
+            this.rb_pagoEfectivo.CheckedChanged += new System.EventHandler(this.rb_pagoEfectivo_CheckedChanged_1);
             // 
             // lbl_montoAbonar
             // 
@@ -344,6 +348,7 @@
             this.rb_tarjetaVisa.TabStop = true;
             this.rb_tarjetaVisa.Text = "Tarjeta Visa";
             this.rb_tarjetaVisa.UseVisualStyleBackColor = true;
+            this.rb_tarjetaVisa.CheckedChanged += new System.EventHandler(this.rb_tarjetaVisa_CheckedChanged);
             // 
             // txt_montoAbonar
             // 
@@ -440,6 +445,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(437, 749);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
@@ -452,7 +458,7 @@
             this.Controls.Add(this.lbl_prodDeseado);
             this.Controls.Add(this.lbl_titulo);
             this.Name = "DE_FormPedido";
-            this.Text = "Form1";
+            this.Text = "Realizar Pedido";
             this.Load += new System.EventHandler(this.DE_FormPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Producto)).EndInit();
             this.gb_datosComercio.ResumeLayout(false);

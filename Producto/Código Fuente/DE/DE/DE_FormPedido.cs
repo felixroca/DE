@@ -73,5 +73,47 @@ namespace DE
 
         }
 
+        private void rb_pagoEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_montoAbonar.Enabled = true;
+        }
+
+        private void btn_realizarPedido_Click(object sender, EventArgs e)
+        {
+            if (txt_prodDeseado.Text == "")
+            {
+                MessageBox.Show("Debe especificar el nombre del producto", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_prodDeseado.Focus();
+            }
+            if (txt_montoAbonar.Text == "" && rb_pagoEfectivo.Checked == true)
+            {
+                MessageBox.Show("Debe especificar el monto con el que abonará", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_montoAbonar.Focus();
+            }
+        }
+
+        private void rb_tarjetaVisa_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_montoAbonar.Enabled = false;
+        }
+
+        private void rb_pagoEfectivo_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txt_montoAbonar.Enabled = true;
+        }
+
+        private void rb_loAntesPosible_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_fecha.Enabled = false;
+            txt_hora.Enabled = false;
+        }
+
+        private void rb_programarRecepcion_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_fecha.Enabled = true;
+            txt_hora.Enabled = true;
+        }
     }
 }
