@@ -144,6 +144,7 @@
             this.btn_googleMaps.TabIndex = 8;
             this.btn_googleMaps.Text = "Google Maps";
             this.btn_googleMaps.UseVisualStyleBackColor = true;
+            this.btn_googleMaps.Click += new System.EventHandler(this.btn_googleMaps_Click);
             // 
             // lbl_referencia
             // 

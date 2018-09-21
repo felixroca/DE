@@ -115,5 +115,15 @@ namespace DE
             txt_fecha.Enabled = true;
             txt_hora.Enabled = true;
         }
+
+        private void btn_googleMaps_Click(object sender, EventArgs e)
+        {
+            DE_FormGoogleMaps googleForm;
+
+            googleForm = new DE_FormGoogleMaps();
+
+            googleForm.Show();
+        }
     }
+    
 }
