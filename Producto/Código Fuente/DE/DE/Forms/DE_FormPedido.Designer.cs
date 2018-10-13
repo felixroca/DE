@@ -108,6 +108,7 @@
             this.txt_prodDeseado.Name = "txt_prodDeseado";
             this.txt_prodDeseado.Size = new System.Drawing.Size(207, 20);
             this.txt_prodDeseado.TabIndex = 7;
+            this.txt_prodDeseado.Leave += new System.EventHandler(this.txt_prodDeseado_Leave);
             // 
             // lbl_prodDeseado
             // 
@@ -168,6 +169,7 @@
             this.txt_ciudad.Name = "txt_ciudad";
             this.txt_ciudad.Size = new System.Drawing.Size(100, 20);
             this.txt_ciudad.TabIndex = 5;
+            this.txt_ciudad.Leave += new System.EventHandler(this.txt_ciudad_Leave);
             // 
             // lbl_ciudad
             // 
@@ -184,6 +186,7 @@
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(100, 20);
             this.txt_numero.TabIndex = 3;
+            this.txt_numero.Leave += new System.EventHandler(this.txt_numero_Leave);
             // 
             // lbl_numero
             // 
@@ -201,6 +204,7 @@
             this.txt_calle.Name = "txt_calle";
             this.txt_calle.Size = new System.Drawing.Size(100, 20);
             this.txt_calle.TabIndex = 1;
+            this.txt_calle.Leave += new System.EventHandler(this.txt_calle_Leave);
             // 
             // lbl_Calle
             // 
@@ -415,6 +419,7 @@
             this.txt_NumeroDomicilio.Name = "txt_NumeroDomicilio";
             this.txt_NumeroDomicilio.Size = new System.Drawing.Size(112, 20);
             this.txt_NumeroDomicilio.TabIndex = 7;
+            this.txt_NumeroDomicilio.Leave += new System.EventHandler(this.txt_NumeroDomicilio_Leave);
             // 
             // lbl_numeroDomicilio
             // 
@@ -432,6 +437,7 @@
             this.txt_calleDomicilio.Name = "txt_calleDomicilio";
             this.txt_calleDomicilio.Size = new System.Drawing.Size(121, 20);
             this.txt_calleDomicilio.TabIndex = 5;
+            this.txt_calleDomicilio.Leave += new System.EventHandler(this.txt_calleDomicilio_Leave);
             // 
             // lbl_CalleDomicilio
             // 

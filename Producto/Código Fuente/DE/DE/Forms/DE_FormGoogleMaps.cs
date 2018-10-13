@@ -1,5 +1,7 @@
 ﻿using GMap.NET;
 using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,48 +37,103 @@ namespace DE
         {
             if (e.Button == MouseButtons.Left)
             {
-                double lat = gMapControl1.FromLocalToLatLng(e.X, e.Y).Lat;
-                double lng = gMapControl1.FromLocalToLatLng(e.X, e.Y).Lng;
-            }
+               var point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
+                double lat = point.Lat;
+                double lng = point.Lng;
 
-            List<Placemark> plc = new List<Placemark>();
-            var st = GMapProviders.GoogleMap.GetPlacemarks(gMapControl1.FromLocalToLatLng(e.X, e.Y), out plc);
-            if (st == GeoCoderStatusCode.G_GEO_SUCCESS && plc != null)
-            {
-                foreach (var pl in plc)
+                // Load Position
+
+                LoadMap(point);
+
+                // Adding Marker
+                AddMarker(point);
+
+                //Get Address
+                var adress=GetAddress(point);
+                if (adress !=null)
                 {
-                    if (!string.IsNullOrEmpty(pl.PostalCodeNumber))
-                    {
-                        try
-                        {
-                            string direccion = pl.Address.ToString();
-
-                            int indiceDeLaComa = direccion.IndexOf(',');
-                            int primerIndice = indiceDeLaComa - 4;
-                            string numero = direccion.Substring(primerIndice, 4);
-                            string numeroFinal = numero.Substring(0, 4);
-
-                            string calle = direccion.Substring(0, primerIndice);
-                            string ciudad = pl.LocalityName.ToString();
-
-                            //Pasar los datos al formulario 1
-                            DE_IFormPedido formPedido = (DE_IFormPedido)Application.OpenForms["DE_FormPedido"];
-                            formPedido.ObtenerCalle(calle);
-                            formPedido.ObtenerNumero(numeroFinal);
-                            formPedido.ObtenerCiudad(ciudad);
-
-                        }
-                      
-
-
-                        catch(Exception)
-                         {
-                             MessageBox.Show("No puede obtenerse la dirección, por favor ingrésela en forma textual", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                         }
-                    }
+                    txt_prueba.Text = String.Join(" , ", adress.ToArray());
                 }
+                else
+                {
+                    txt_prueba.Text = "No se puede cargar la direccion";
+                }
+           
             }
+
+            //List<Placemark> plc = new List<Placemark>();
+            //var st = GMapProviders.GoogleMap.GetPlacemarks(gMapControl1.FromLocalToLatLng(e.X, e.Y), out plc);
+            //if (st == GeoCoderStatusCode.G_GEO_SUCCESS && plc != null)
+            //{
+            //    foreach (var pl in plc)
+            //    {
+            //        if (!string.IsNullOrEmpty(pl.PostalCodeNumber))
+            //        {
+            //            try
+            //            {
+            //                string direccion = pl.Address.ToString();
+            //                txt_prueba.Text=direccion;
+
+            //                int indiceDeLaComa = direccion.IndexOf(',');
+            //                int primerIndice = indiceDeLaComa - 4;
+            //                string numero = direccion.Substring(primerIndice, 4);
+            //                string numeroFinal = numero.Substring(0, 4);
+
+            //                string calle = direccion.Substring(0, primerIndice);
+            //                string ciudad = pl.LocalityName.ToString();
+
+            //                //Pasar los datos al formulario 1
+            //                DE_IFormPedido formPedido = (DE_IFormPedido)Application.OpenForms["DE_FormPedido"];
+            //                formPedido.ObtenerCalle(calle);
+            //                formPedido.ObtenerNumero(numeroFinal);
+            //                formPedido.ObtenerCiudad(ciudad);
+
+            //            }
+
+
+
+            //            catch(Exception)
+            //             {
+            //                 MessageBox.Show("No puede obtenerse la dirección, por favor ingrésela en forma textual", "Error",
+            //                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //             }
+         
+        }
+             
+        private void LoadMap(PointLatLng point)
+        {
+            gMapControl1.Position = point;
+        }
+        
+        private void AddMarker(PointLatLng pointToAdd, GMarkerGoogleType markerType= GMarkerGoogleType.arrow)
+        {
+            var markers = new GMapOverlay("markers");
+            var marker = new GMarkerGoogle(pointToAdd, markerType);
+            markers.Markers.Add(marker);
+            gMapControl1.Overlays.Add(markers);
+        }
+
+        private List<String> GetAddress(PointLatLng point)
+        {
+            List<Placemark> placemarks = null;
+            var statusCode = GMapProviders.GoogleMap.GetPlacemarks(point, out placemarks);
+
+            if(statusCode == GeoCoderStatusCode.G_GEO_SUCCESS && placemarks!=null)
+            {
+                List<String> adress = new List<string>();
+                foreach (var placemark in placemarks)
+                {
+                    adress.Add(placemark.Address);
+                }
+                return adress;
+            }
+            return null;
+           
+        }
+
+        private void gMapControl1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Click");
         }
     }
 }

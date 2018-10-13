@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,7 +33,7 @@ namespace DE
         private void btn_subirImagen_Click(object sender, EventArgs e)
         {
             OpenFileDialog opnfd = new OpenFileDialog();
-            opnfd.Filter = "Image Files (*.jpg;*.jpeg;*.gif;*.png;)|*.jpg;*.jpeg;*.gif;*.png;";
+            opnfd.Filter = "Image Files (*.jpg;*)|*.jpg;*";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
 
@@ -80,12 +81,7 @@ namespace DE
 
         private void btn_realizarPedido_Click(object sender, EventArgs e)
         {
-            if (txt_prodDeseado.Text == "")
-            {
-                MessageBox.Show("Debe especificar el nombre del producto", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_prodDeseado.Focus();
-            }
+          
             if (txt_montoAbonar.Text == "" && rb_pagoEfectivo.Checked == true)
             {
                 MessageBox.Show("Debe especificar el monto con el que abonará", "Error",
@@ -123,6 +119,79 @@ namespace DE
             googleForm = new DE_FormGoogleMaps();
 
             googleForm.Show();
+        }
+
+        private void txt_prodDeseado_Leave(object sender, EventArgs e)
+        {
+            if (txt_prodDeseado.Text == "")
+            {
+                MessageBox.Show("Debe especificar el nombre del producto", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_prodDeseado.Focus();
+            }
+            if (Regex.IsMatch(txt_prodDeseado.Text, @"[(.*?%&$#¡¿!+-/|¬@\}{;:=)]"))
+            {
+                MessageBox.Show("El nombre del producto debe contener solo letras y numeros", "Error",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txt_numero_Leave(object sender, EventArgs e)
+        {
+            if (txt_numero.Text == "")
+            {
+                MessageBox.Show("Debe indicar el numero de la dirección del comercio", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_numero.Focus();
+            }
+            if (!Regex.IsMatch(txt_numero.Text, @"[0-9]"))
+            {
+                MessageBox.Show("El numero de la calle es incorrecto", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_numero.Text = "";
+                txt_numero.Focus();
+            }
+        }
+
+        private void txt_calle_Leave(object sender, EventArgs e)
+        {
+            if (txt_calle.Text == "")
+            {
+                MessageBox.Show("Debe indicar el nombre de la calle del comercio", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_calle.Focus();
+            }
+        }
+
+        private void txt_ciudad_Leave(object sender, EventArgs e)
+        {
+            if (txt_ciudad.Text == "")
+            {
+                MessageBox.Show("Debe indicar el nombre de la ciudad del comercio", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_ciudad.Focus();
+            }
+        }
+
+        private void txt_calleDomicilio_Leave(object sender, EventArgs e)
+        {
+            if (txt_calleDomicilio.Text == "")
+            {
+                MessageBox.Show("Debe indicar el nombre de la calle del domicilio", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_calleDomicilio.Focus();
+            }
+           
+        }
+
+        private void txt_NumeroDomicilio_Leave(object sender, EventArgs e)
+        {
+            if (txt_NumeroDomicilio.Text == "")
+            {
+                MessageBox.Show("Debe indicar el numero de la calle del domicilio", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_NumeroDomicilio.Focus();
+            }
         }
     }
     
