@@ -58,7 +58,7 @@ namespace DE
         private void llenarComboCiudad()
         {
             DataTable dt = new DataTable();
-            string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TP6_DB.mdb";
+            string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\CódigoFuente\DE\TP6_DB.mdb";
             string consulta = "SELECT * FROM Ciudad";
 
             OleDbConnection connection = new OleDbConnection();
@@ -87,6 +87,86 @@ namespace DE
                 MessageBox.Show("Debe especificar el monto con el que abonará", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_montoAbonar.Focus();
+            }
+
+            System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection();
+            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\CódigoFuente\DE\TP6_DB.mdb";
+
+            try
+            {
+                conn.Open();
+                String NombreProducto = txt_prodDeseado.Text.ToString();
+                String CalleComercio = txt_calle.Text.ToString();
+                String NumeroCalleComercio = txt_numero.Text.ToString();
+                String CiudadComercio = txt_ciudad.Text.ToString();
+
+                String ReferenciaComercio = "Vacio";
+                if (txt_referencia.Text!="")
+                {
+                    ReferenciaComercio = txt_referencia.Text.ToString();
+                }
+              
+                
+                String CalleDomicilio = txt_calleDomicilio.Text.ToString();
+                String NumeroCalleDomicilio = txt_NumeroDomicilio.Text.ToString();
+                String CiudadDomicilio = "";
+                int CiudadDomicilioCB = int.Parse(cmb_ciudadDomicilio.SelectedValue.ToString());
+                
+                if(CiudadDomicilioCB==1)
+                {
+                    CiudadDomicilio = "Ciudad de Cordoba";
+                }
+
+                String ReferenciaDomicilio = "Vacio";
+                if (textBox1.Text!="")
+                {
+                   ReferenciaDomicilio = textBox1.Text.ToString();
+                }
+
+                String FormaDePago = "Tarjeta Visa";
+
+                if (rb_tarjetaVisa.Checked==true)
+                {
+                     FormaDePago = "Tarjeta Visa";
+                }
+                else
+                {
+                     FormaDePago = "Efectivo";
+                }
+
+                String LoAntesPosible = "Lo antes posible";
+                String FechaRecepcio = "Vacio";
+                String HoraRecepcion = "Vacio";
+                if (rb_loAntesPosible.Checked == true)
+                {
+                   LoAntesPosible = "Lo Antes Posible";
+                    FechaRecepcio = "Vacio";
+                     HoraRecepcion = "Vacio";
+                }
+                else
+                {
+                    LoAntesPosible = "Recepcion Programada";
+                    FechaRecepcio = txt_fecha.Text.ToString();
+                     HoraRecepcion = txt_hora.Text.ToString();
+                }
+                
+
+
+                String my_querry = "INSERT INTO Pedido(NombreProducto,CalleComercio,NumeroCalleComercio,CiudadComercio,ReferenciaComercio, CalleDomicilio, NumeroCalleDomicilio, CiudadDomicilio,ReferenciaDomicilio,FormaDePago,LoAntesPosible,FechaRecepcio,HoraRecepcion) " +
+                    "VALUES('" + NombreProducto + "','" + CalleComercio + "','" + NumeroCalleComercio + "','" + CiudadComercio + "','" +  ReferenciaComercio + "','" + CalleDomicilio + "','" + NumeroCalleDomicilio + "','" + CiudadDomicilio + "','" + ReferenciaDomicilio + "','" + FormaDePago + "','" + LoAntesPosible + "','" + FechaRecepcio + "','" + HoraRecepcion + "')";
+
+                OleDbCommand cmd = new OleDbCommand(my_querry, conn);
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Data saved successfuly...!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed due to" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
