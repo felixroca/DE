@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using DE.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -58,7 +60,7 @@ namespace DE
         private void llenarComboCiudad()
         {
             DataTable dt = new DataTable();
-            string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\CódigoFuente\DE\TP6_DB.mdb";
+            string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\Código Fuente\DE\TP6_DB.mdb";
             string consulta = "SELECT * FROM Ciudad";
 
             OleDbConnection connection = new OleDbConnection();
@@ -90,7 +92,7 @@ namespace DE
             }
 
             System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection();
-            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\CódigoFuente\DE\TP6_DB.mdb";
+            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\Código Fuente\DE\TP6_DB.mdb";
 
             try
             {
@@ -111,10 +113,39 @@ namespace DE
                 String NumeroCalleDomicilio = txt_NumeroDomicilio.Text.ToString();
                 String CiudadDomicilio = "";
                 int CiudadDomicilioCB = int.Parse(cmb_ciudadDomicilio.SelectedValue.ToString());
-                
-                if(CiudadDomicilioCB==1)
+
+                switch (CiudadDomicilioCB)
                 {
-                    CiudadDomicilio = "Ciudad de Cordoba";
+                    case 1:
+                        CiudadDomicilio = "Ciudad de Cordoba";
+                        break;
+                    case 2:
+                        CiudadDomicilio = "Villa Carlos Paz";
+                        break;
+                    case 3:
+                        CiudadDomicilio = "Alta Gracia";
+                        break;
+                    case 4:
+                        CiudadDomicilio = "Cosquin";
+                        break;
+                    case 5:
+                        CiudadDomicilio = "Villa Maria";
+                        break;
+                    case 6:
+                        CiudadDomicilio = "Jesus Maria";
+                        break;
+                    case 7:
+                        CiudadDomicilio = "La Falda";
+                        break;
+                    case 8:
+                        CiudadDomicilio = "San Francisco";
+                        break;
+                    case 9:
+                        CiudadDomicilio = "Capilla del Monte";
+                        break;
+                    case 10:
+                        CiudadDomicilio = "Rio Cuarto";
+                        break;
                 }
 
                 String ReferenciaDomicilio = "Vacio";
@@ -159,6 +190,12 @@ namespace DE
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Data saved successfuly...!");
+
+                DE_FormResumenPedido resumenFormPedido;
+
+                resumenFormPedido = new DE_FormResumenPedido();
+
+                resumenFormPedido.Show();
             }
             catch (Exception ex)
             {
@@ -168,6 +205,9 @@ namespace DE
             {
                 conn.Close();
             }
+
+            
+
         }
 
         private void rb_tarjetaVisa_CheckedChanged(object sender, EventArgs e)
@@ -272,6 +312,22 @@ namespace DE
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_NumeroDomicilio.Focus();
             }
+        }
+
+        private void txt_fecha_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime dteFechaNacimiento = new DateTime();
+                dteFechaNacimiento = Convert.ToDateTime(txt_fecha.Text);
+           
+            }   
+            catch
+            {
+                MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+         
         }
     }
     

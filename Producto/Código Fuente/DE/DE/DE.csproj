@@ -98,6 +98,12 @@
       <DependentUpon>DE_FormPedido.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\DE_IFormPedido.cs" />
+    <Compile Include="Forms\DE_FormResumenPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DE_FormResumenPedido.Designer.cs">
+      <DependentUpon>DE_FormResumenPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TP6_DBDataSet.Designer.cs">
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DE_FormPedido.resx">
       <DependentUpon>DE_FormPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DE_FormResumenPedido.resx">
+      <DependentUpon>DE_FormResumenPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

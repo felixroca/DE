@@ -254,6 +254,7 @@
             this.txt_fecha.Name = "txt_fecha";
             this.txt_fecha.Size = new System.Drawing.Size(115, 20);
             this.txt_fecha.TabIndex = 3;
+            this.txt_fecha.Leave += new System.EventHandler(this.txt_fecha_Leave);
             // 
             // lbl_fecha
             // 
