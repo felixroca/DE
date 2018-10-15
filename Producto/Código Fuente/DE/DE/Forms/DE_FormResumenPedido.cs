@@ -49,7 +49,23 @@ namespace DE.Forms
             DataRow row = dt.Rows[0];
             lbl_nombreProductoCambiar.Text = row["NombreProducto"].ToString();
             lbl_domicilioCombiar.Text = row["CalleComercio"].ToString() + " " + row["NumeroCalleComercio"].ToString();
+            lbl_domicilioClienteCambiar.Text = row["CalleDomicilio"].ToString() + " " + row["NumeroCalleDomicilio"].ToString();
 
+            if (row["LoAntesPosible"].ToString()=="Recepcion Programada")
+            {
+                lbl_entregaCambiar.Text = row["FechaRecepcio"].ToString() + " " + row["HoraRecepcion"].ToString();
+                
+            }
+            else
+            {
+                lbl_entregaCambiar.Text = "Lo antes posible";
+            }
+
+
+        }
+
+        private void lbl_fechaCambiarPorLoAntesPosible_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -237,6 +237,7 @@
             this.txt_hora.Name = "txt_hora";
             this.txt_hora.Size = new System.Drawing.Size(115, 20);
             this.txt_hora.TabIndex = 5;
+            this.txt_hora.Leave += new System.EventHandler(this.txt_hora_Leave);
             // 
             // label3
             // 
@@ -363,6 +364,7 @@
             this.txt_montoAbonar.Name = "txt_montoAbonar";
             this.txt_montoAbonar.Size = new System.Drawing.Size(115, 20);
             this.txt_montoAbonar.TabIndex = 11;
+            this.txt_montoAbonar.Leave += new System.EventHandler(this.txt_montoAbonar_Leave);
             // 
             // groupBox1
             // 

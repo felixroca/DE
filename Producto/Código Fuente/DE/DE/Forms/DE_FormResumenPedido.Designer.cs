@@ -38,10 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbl_domicilioClienteCambiar = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lbl_fechaCambiarPorLoAntesPosible = new System.Windows.Forms.Label();
-            this.lbl_fechaCambiar = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbl_horaCambiar = new System.Windows.Forms.Label();
+            this.lbl_entrega = new System.Windows.Forms.Label();
+            this.lbl_entregaCambiar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_datosProducto
@@ -138,51 +136,32 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Datos de la entrega";
             // 
-            // lbl_fechaCambiarPorLoAntesPosible
+            // lbl_entrega
             // 
-            this.lbl_fechaCambiarPorLoAntesPosible.AutoSize = true;
-            this.lbl_fechaCambiarPorLoAntesPosible.Location = new System.Drawing.Point(13, 193);
-            this.lbl_fechaCambiarPorLoAntesPosible.Name = "lbl_fechaCambiarPorLoAntesPosible";
-            this.lbl_fechaCambiarPorLoAntesPosible.Size = new System.Drawing.Size(40, 13);
-            this.lbl_fechaCambiarPorLoAntesPosible.TabIndex = 10;
-            this.lbl_fechaCambiarPorLoAntesPosible.Text = "Fecha:";
+            this.lbl_entrega.AutoSize = true;
+            this.lbl_entrega.Location = new System.Drawing.Point(13, 193);
+            this.lbl_entrega.Name = "lbl_entrega";
+            this.lbl_entrega.Size = new System.Drawing.Size(47, 13);
+            this.lbl_entrega.TabIndex = 10;
+            this.lbl_entrega.Text = "Entrega:";
+            this.lbl_entrega.Click += new System.EventHandler(this.lbl_fechaCambiarPorLoAntesPosible_Click);
             // 
-            // lbl_fechaCambiar
+            // lbl_entregaCambiar
             // 
-            this.lbl_fechaCambiar.AutoSize = true;
-            this.lbl_fechaCambiar.Location = new System.Drawing.Point(65, 193);
-            this.lbl_fechaCambiar.Name = "lbl_fechaCambiar";
-            this.lbl_fechaCambiar.Size = new System.Drawing.Size(35, 13);
-            this.lbl_fechaCambiar.TabIndex = 11;
-            this.lbl_fechaCambiar.Text = "label3";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(121, 193);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Hora:";
-            // 
-            // lbl_horaCambiar
-            // 
-            this.lbl_horaCambiar.AutoSize = true;
-            this.lbl_horaCambiar.Location = new System.Drawing.Point(160, 193);
-            this.lbl_horaCambiar.Name = "lbl_horaCambiar";
-            this.lbl_horaCambiar.Size = new System.Drawing.Size(35, 13);
-            this.lbl_horaCambiar.TabIndex = 13;
-            this.lbl_horaCambiar.Text = "label3";
+            this.lbl_entregaCambiar.AutoSize = true;
+            this.lbl_entregaCambiar.Location = new System.Drawing.Point(65, 193);
+            this.lbl_entregaCambiar.Name = "lbl_entregaCambiar";
+            this.lbl_entregaCambiar.Size = new System.Drawing.Size(35, 13);
+            this.lbl_entregaCambiar.TabIndex = 11;
+            this.lbl_entregaCambiar.Text = "label3";
             // 
             // DE_FormResumenPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 281);
-            this.Controls.Add(this.lbl_horaCambiar);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.lbl_fechaCambiar);
-            this.Controls.Add(this.lbl_fechaCambiarPorLoAntesPosible);
+            this.Controls.Add(this.lbl_entregaCambiar);
+            this.Controls.Add(this.lbl_entrega);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbl_domicilioClienteCambiar);
             this.Controls.Add(this.label4);
@@ -213,9 +192,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbl_domicilioClienteCambiar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbl_fechaCambiarPorLoAntesPosible;
-        private System.Windows.Forms.Label lbl_fechaCambiar;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lbl_horaCambiar;
+        private System.Windows.Forms.Label lbl_entrega;
+        private System.Windows.Forms.Label lbl_entregaCambiar;
     }
 }

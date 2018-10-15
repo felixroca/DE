@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -83,7 +84,11 @@ namespace DE
 
         private void btn_realizarPedido_Click(object sender, EventArgs e)
         {
-          
+            if(rb_tarjetaVisa.Checked==false && rb_pagoEfectivo.Checked==false)
+            {
+                MessageBox.Show("Debe seleccionar una forma de pago", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             if (txt_montoAbonar.Text == "" && rb_pagoEfectivo.Checked == true)
             {
                 MessageBox.Show("Debe especificar el monto con el que abonará", "Error",
@@ -182,14 +187,13 @@ namespace DE
                 }
                 
 
-
                 String my_querry = "INSERT INTO Pedido(NombreProducto,CalleComercio,NumeroCalleComercio,CiudadComercio,ReferenciaComercio, CalleDomicilio, NumeroCalleDomicilio, CiudadDomicilio,ReferenciaDomicilio,FormaDePago,LoAntesPosible,FechaRecepcio,HoraRecepcion) " +
                     "VALUES('" + NombreProducto + "','" + CalleComercio + "','" + NumeroCalleComercio + "','" + CiudadComercio + "','" +  ReferenciaComercio + "','" + CalleDomicilio + "','" + NumeroCalleDomicilio + "','" + CiudadDomicilio + "','" + ReferenciaDomicilio + "','" + FormaDePago + "','" + LoAntesPosible + "','" + FechaRecepcio + "','" + HoraRecepcion + "')";
 
                 OleDbCommand cmd = new OleDbCommand(my_querry, conn);
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Data saved successfuly...!");
+                MessageBox.Show("Su pedido ha sido registrado correctamente...!");
 
                 DE_FormResumenPedido resumenFormPedido;
 
@@ -199,15 +203,12 @@ namespace DE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed due to" + ex.Message);
+            
             }
             finally
             {
                 conn.Close();
-            }
-
-            
-
+            }            
         }
 
         private void rb_tarjetaVisa_CheckedChanged(object sender, EventArgs e)
@@ -253,6 +254,7 @@ namespace DE
             {
                 MessageBox.Show("El nombre del producto debe contener solo letras y numeros", "Error",
                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_prodDeseado.Focus();
             }
         }
 
@@ -316,18 +318,51 @@ namespace DE
 
         private void txt_fecha_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                DateTime dteFechaNacimiento = new DateTime();
-                dteFechaNacimiento = Convert.ToDateTime(txt_fecha.Text);
-           
-            }   
-            catch
+            int bandera = 0;
+
+            if (!Regex.IsMatch(txt_fecha.Text, @"[\d{2}.\d{2}.\d{4}]")) 
             {
                 MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bandera = 1;
             }
-         
+            if (Regex.IsMatch(txt_fecha.Text, @"[a-z]") && bandera ==0)
+            {
+                MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //try
+            //{
+            //    DateTime fechaEntrega = new DateTime();
+            //    fechaEntrega = Convert.ToDateTime(txt_fecha.Text);
+
+            //}   
+            //catch
+            //{
+            //    MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
+        }
+
+        private void txt_hora_Leave(object sender, EventArgs e)
+        {
+            if(!Regex.IsMatch(txt_hora.Text, @"^(?:0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"))
+            {
+                MessageBox.Show("La hora no es correcta, debe indicarse como hh:mm", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_hora.Focus();
+            }
+        }
+
+        private void txt_montoAbonar_Leave(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(txt_montoAbonar.Text, @"[0-9]") || Regex.IsMatch(txt_montoAbonar.Text, @"[.,]"))
+            {
+                MessageBox.Show("El monto es incorrecto debe indicar valores enteros. Ej: 200", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_montoAbonar.Focus();
+            }
         }
     }
     
