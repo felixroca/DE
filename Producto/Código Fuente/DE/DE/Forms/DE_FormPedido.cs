@@ -330,18 +330,29 @@ namespace DE
             }
             if (Regex.IsMatch(txt_fecha.Text, @"[a-z]") && bandera ==0)
             {
-                MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
-           
+                
+            if(Regex.IsMatch(txt_fecha.Text, @"[\d{2}.\d{2}.\d{4}]"))
+            {
                 DateTime fechaEntrega = new DateTime();
-                fechaEntrega = Convert.ToDateTime(txt_fecha.Text);
-                DateTime fechaActual = System.DateTime.Now;
-                if(DateTime.Compare(fechaEntrega.Date, fechaActual.Date)<0)
+                try
                 {
-                    MessageBox.Show("La fecha de entrega no puede ser menor a la fecha actual", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    fechaEntrega = Convert.ToDateTime(txt_fecha.Text);
+                    DateTime fechaActual = System.DateTime.Now;
+                    if (DateTime.Compare(fechaEntrega.Date, fechaActual.Date) < 0)
+                    {
+                        MessageBox.Show("La fecha de entrega no puede ser menor a la fecha actual", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+                
 
         
 
