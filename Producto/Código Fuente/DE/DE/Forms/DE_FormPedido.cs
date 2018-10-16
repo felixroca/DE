@@ -260,13 +260,15 @@ namespace DE
 
         private void txt_numero_Leave(object sender, EventArgs e)
         {
+            int bandera = 0;
             if (txt_numero.Text == "")
             {
                 MessageBox.Show("Debe indicar el numero de la dirección del comercio", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_numero.Focus();
+                bandera = 1;
             }
-            if (!Regex.IsMatch(txt_numero.Text, @"[0-9]"))
+            if (!Regex.IsMatch(txt_numero.Text, @"[0-9]") && bandera==0)
             {
                 MessageBox.Show("El numero de la calle es incorrecto", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -331,17 +333,17 @@ namespace DE
                 MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //try
-            //{
-            //    DateTime fechaEntrega = new DateTime();
-            //    fechaEntrega = Convert.ToDateTime(txt_fecha.Text);
+           
+                DateTime fechaEntrega = new DateTime();
+                fechaEntrega = Convert.ToDateTime(txt_fecha.Text);
+                DateTime fechaActual = System.DateTime.Now;
+                if(DateTime.Compare(fechaEntrega.Date, fechaActual.Date)<0)
+                {
+                    MessageBox.Show("La fecha de entrega no puede ser menor a la fecha actual", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            //}   
-            //catch
-            //{
-            //    MessageBox.Show("La fecha no es correcta, debe indicarse como dd/mm/aaaa", "Error",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+        
 
         }
 
@@ -357,7 +359,7 @@ namespace DE
 
         private void txt_montoAbonar_Leave(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txt_montoAbonar.Text, @"[0-9]") || Regex.IsMatch(txt_montoAbonar.Text, @"[.,]"))
+            if (!Regex.IsMatch(txt_montoAbonar.Text, @"[0-9]") || Regex.IsMatch(txt_montoAbonar.Text, @"[.,-]"))
             {
                 MessageBox.Show("El monto es incorrecto debe indicar valores enteros. Ej: 200", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
