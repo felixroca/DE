@@ -62,7 +62,7 @@ namespace DE
         private void llenarComboCiudad()
         {
             DataTable dt = new DataTable();
-            string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\Código Fuente\DE\DE\TP6_DB.mdb";
+            string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\BaseDeDatos\TP6_DB.mdb";
             string consulta = "SELECT * FROM Ciudad";
 
             OleDbConnection connection = new OleDbConnection();
@@ -152,17 +152,20 @@ namespace DE
                 {
                     MessageBox.Show("Debe indicar la hora en que desea recibir el producto", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    grabar = false;
                 }
-                grabar = false;
+              
             }
 
             if(grabar==true)
             {
-                System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection();
-                conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\Código Fuente\DE\DE\TP6_DB.mdb";
-
                 try
                 {
+
+                    System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection();
+                    conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\BaseDeDatos\TP6_DB.mdb";
+
+
                     conn.Open();
                     String NombreProducto = txt_prodDeseado.Text.ToString();
                     String CalleComercio = txt_calle.Text.ToString();
@@ -264,10 +267,12 @@ namespace DE
 
                     resumenFormPedido.Show();
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
-
+                    MessageBox.Show("Carga de datos faliido debido a:" + ex.Message);
                 }
+               
+               
             }
           
         }
