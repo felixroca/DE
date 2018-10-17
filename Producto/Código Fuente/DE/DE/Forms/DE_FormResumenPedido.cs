@@ -24,7 +24,7 @@ namespace DE.Forms
             DataTable id = new DataTable();
             DataGridView prod = new DataGridView();
                  DataTable dt = new DataTable();
-                string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\Código Fuente\DE\TP6_DB.mdb";
+                string conString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Facu\ISW\DE\DE\Producto\Código Fuente\DE\DE\TP6_DB.mdb";
                 string consulta = "SELECT ID FROM Pedido";
 
                 OleDbConnection connection = new OleDbConnection();
@@ -39,7 +39,7 @@ namespace DE.Forms
 
             int cantDeFilas = id.Rows.Count;
 
-            int idAbuscar = 12 + cantDeFilas;
+            int idAbuscar = 53 + cantDeFilas;
 
             string consulta2 = "SELECT * FROM Pedido WHERE ID="+idAbuscar;
             OleDbDataAdapter adapter2 = new OleDbDataAdapter(consulta2, connection.ConnectionString);

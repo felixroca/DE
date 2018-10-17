@@ -422,6 +422,7 @@
             this.txt_NumeroDomicilio.Name = "txt_NumeroDomicilio";
             this.txt_NumeroDomicilio.Size = new System.Drawing.Size(112, 20);
             this.txt_NumeroDomicilio.TabIndex = 7;
+            this.txt_NumeroDomicilio.TextChanged += new System.EventHandler(this.txt_NumeroDomicilio_TextChanged);
             this.txt_NumeroDomicilio.Leave += new System.EventHandler(this.txt_NumeroDomicilio_Leave);
             // 
             // lbl_numeroDomicilio

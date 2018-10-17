@@ -38,47 +38,48 @@ namespace DE
 
         private void gMapControl1_Click(object sender, MouseEventArgs e)
         {
+            string numeroFinal = "150";
 
-            List<Placemark> plc = new List<Placemark>();
-            var st = GMapProviders.GoogleMap.GetPlacemarks(gMapControl1.FromLocalToLatLng(e.X, e.Y), out plc);
-            if (st == GeoCoderStatusCode.G_GEO_SUCCESS && plc != null)
-            {
-                foreach (var pl in plc)
-                {
-                    if (!string.IsNullOrEmpty(pl.PostalCodeNumber))
-                    {
-                        try
-                        {
-                            string direccion = pl.Address.ToString();
+            string calle = "San Jerónimo";
+            string ciudad = "Córdoba";
+
+            //Pasar los datos al formulario 1
+            DE_IFormPedido formPedido = (DE_IFormPedido)Application.OpenForms["DE_FormPedido"];
+            formPedido.ObtenerCalle(calle);
+            formPedido.ObtenerNumero(numeroFinal);
+            formPedido.ObtenerCiudad(ciudad);
+
+            //List<Placemark> plc = new List<Placemark>();
+            //var st = GMapProviders.GoogleMap.GetPlacemarks(gMapControl1.FromLocalToLatLng(e.X, e.Y), out plc);
+            //if (st == GeoCoderStatusCode.G_GEO_SUCCESS && plc != null)
+            //{
+            //    foreach (var pl in plc)
+            //    {
+            //        if (!string.IsNullOrEmpty(pl.PostalCodeNumber))
+            //        {
+            //            try
+            //            {
+            //                string direccion = pl.Address.ToString();
                         
 
-                            int indiceDeLaComa = direccion.IndexOf(',');
-                            int primerIndice = indiceDeLaComa - 4;
-                            string numero = direccion.Substring(primerIndice, 4);
-                            string numeroFinal = numero.Substring(0, 4);
+            //                int indiceDeLaComa = direccion.IndexOf(',');
+            //                int primerIndice = indiceDeLaComa - 4;
+            //                string numero = direccion.Substring(primerIndice, 4);
+                            
 
-                            string calle = direccion.Substring(0, primerIndice);
-                            string ciudad = pl.LocalityName.ToString();
-
-                            //Pasar los datos al formulario 1
-                            DE_IFormPedido formPedido = (DE_IFormPedido)Application.OpenForms["DE_FormPedido"];
-                            formPedido.ObtenerCalle(calle);
-                            formPedido.ObtenerNumero(numeroFinal);
-                            formPedido.ObtenerCiudad(ciudad);
-
-                        }
+            //            }
 
 
 
-                        catch (Exception)
-                        {
-                            MessageBox.Show("No puede obtenerse la dirección, por favor ingrésela en forma textual", "Error",
-                           MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+            //            catch (Exception)
+            //            {
+            //                MessageBox.Show("No puede obtenerse la dirección, por favor ingrésela en forma textual", "Error",
+            //               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
         }
 
        
@@ -88,5 +89,18 @@ namespace DE
 
         }
 
+        private void gMapControl1_DoubleClick(object sender, EventArgs e)
+        {
+            string numeroFinal = "150";
+
+            string calle = "San Jerónimo";
+            string ciudad = "Córdoba";
+
+            //Pasar los datos al formulario 1
+            DE_IFormPedido formPedido = (DE_IFormPedido)Application.OpenForms["DE_FormPedido"];
+            formPedido.ObtenerCalle(calle);
+            formPedido.ObtenerNumero(numeroFinal);
+            formPedido.ObtenerCiudad(ciudad);
+        }
     }
 }

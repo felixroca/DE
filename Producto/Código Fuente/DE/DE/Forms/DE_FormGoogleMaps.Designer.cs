@@ -57,12 +57,13 @@
             this.gMapControl1.TabIndex = 1;
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.Load += new System.EventHandler(this.gMapControl1_Load);
+            this.gMapControl1.DoubleClick += new System.EventHandler(this.gMapControl1_DoubleClick);
             // 
             // DE_FormGoogleMaps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 395);
+            this.ClientSize = new System.Drawing.Size(569, 395);
             this.Controls.Add(this.gMapControl1);
             this.Name = "DE_FormGoogleMaps";
             this.Text = "Google Maps";
